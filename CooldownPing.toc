@@ -1,0 +1,5 @@
+## Interface: 120001
+## Title: Cooldown Ping
+## Notes: Ping remaining cooldowns of action bar or cooldown manager spells.
+## Version: 1.0
+CooldownPing.lua
