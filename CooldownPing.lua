@@ -6,6 +6,10 @@ function formatCooldown(spellID)
     local remainingCooldown = C_Spell.GetSpellCooldownDuration(spellID):GetRemainingDuration(0)
     if (remainingCooldown == 0) then
         status = "Ready"
+    elseif (remainingCooldown >= 60) then
+        local remainingMinutes = math.floor(remainingCooldown / 60)
+        local remainingSeconds = remainingCooldown % 60
+        status = string.format("%dm %ds", remainingMinutes, remainingSeconds)
     else
         status = string.format("%ds", remainingCooldown)
     end
@@ -19,6 +23,10 @@ function formatCharges(spellID)
     local remainingCharge = C_Spell.GetSpellChargeDuration(spellID):GetRemainingDuration(0)
     if (remainingCharge == 0) then
         status = string.format("Ready (%d/%d)", currentCharges, maxCharges)
+    elseif (remainingCharge >= 60) then
+        local remainingMinutes = math.floor(remainingCharge / 60)
+        local remainingSeconds = remainingCharge % 60
+        status = string.format("%dm %ds", remainingMinutes, remainingSeconds)
     else
         status = string.format("%ds (%d/%d)", remainingCharge, currentCharges, maxCharges)
     end
